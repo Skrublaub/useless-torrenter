@@ -1,7 +1,11 @@
 import requests
+import logging
 
 from bs4 import BeautifulSoup
-from io import StringIO
+
+from torrer.constants import TIMEOUT_AMT
+
+logger = logging.getLogger(__name__)
 
 
 def search(pb_url: str, query: str) -> str:
@@ -17,13 +21,17 @@ def search(pb_url: str, query: str) -> str:
         str: The link to the top result of the search
     """
     search_url: str = f"{pb_url}/search/{query}"
+    logger.info(f"Search url is {search_url}")
 
-    r: requests.Response = requests.get(search_url)
+    r: requests.Response = requests.get(search_url, timeout=TIMEOUT_AMT)
+    r.raise_for_status()
 
+    logger.info(f"Parsing {search_url} for top result")
     html: BeautifulSoup = BeautifulSoup(r.text, features='lxml')
-    top_result_element = html.find_all('a', class_='detLink')[0]
+    top_result_element = html.find_all('a', class_='detLink')[0]  # 0 to grab the first index
     top_result_link: str = top_result_element['href']
 
+    logger.info(f"Top result is {top_result_link}")
     return top_result_link
 
 
@@ -33,18 +41,20 @@ def parse_search_result(torrent_page: str) -> str:
 
     Args:
         torrent_page (str): The individual torrent page to download
-            the magnet link from
+            the magnet link from. Is an url
 
     Returns:
         str: The magnet link
     """
-    r: requests.Response = requests.get(torrent_page, timeout=10)
+    r: requests.Response = requests.get(torrent_page, timeout=TIMEOUT_AMT)
+    r.raise_for_status()
 
     html: BeautifulSoup = BeautifulSoup(r.text, features='lxml')
 
-    #print(html.prettify())
+    logger.info("Finding the magnet link")
     download_class = html.find('div', {"class": "download"})
     a_divs = download_class.find_all('a')[0]
     magnet_link = a_divs['href']
 
+    logger.info(f"Magnet link: {magnet_link}")
     return magnet_link
