@@ -1,0 +1,2 @@
+class FirefoxNotFoundError(FileNotFoundError):
+    pass
