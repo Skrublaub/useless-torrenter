@@ -72,7 +72,7 @@ def extract_file(archive_file: Path, end_dir: Path = Path.cwd()) -> Path:
 
     if str(archive_file).endswith('.zip'):
         end_file = end_dir / "geckodriver.exe"
-        with zipfile.ZipFile(archive_file, 'r') as extraction_file:  # haven't tested this on windows
+        with zipfile.ZipFile(archive_file, 'r') as extraction_file:  # haven't tested this on Windows
             extraction_file.extractall(end_dir)
     elif str(archive_file).endswith('.tar.gz'):
         end_file = end_dir / "geckodriver"
