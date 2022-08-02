@@ -36,3 +36,6 @@ that doesn't need javascript to work. The official mirror needs it.
 When using `torrer selenium "query"`, this uses a geckodriver install to open the
 official piratesbay website. Javascript is run when using selenium
 
+## Why
+
+I wanted to learn selenium and how to parse with python requests.
