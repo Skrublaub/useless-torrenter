@@ -23,7 +23,7 @@ Tick the `Bypass authentication for clients on localhost` box.
 A geckodriver is installed based on the system detected. geckodriver.exe for windows and
 geckodriver for MacOS and Linux.
 
-You must have firefox installed to use the selenium
+You must have firefox installed to use selenium.
 
 ## Other info
 
