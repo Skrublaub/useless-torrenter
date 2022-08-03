@@ -20,10 +20,11 @@ Tick the `Bypass authentication for clients on localhost` box.
 
 ## Selenium Info
 
-A geckodriver is installed based on the system detected. geckodriver.exe for windows and
-geckodriver for MacOS and Linux.
+Geckodriver is installed based on the system detected. geckodriver.exe for windows and
+just geckodriver for MacOS and Linux.
 
-You must have firefox installed to use selenium.
+You must have firefox installed to use selenium. I tried this with librewolf by pointing
+towards the executable, and it didn't work :/
 
 ## Other info
 
