@@ -46,6 +46,6 @@ sure any code pushed has been run through black.
 
 ## TODO
 
-~~Learn selenium and requests~~
-~~Learn github actions basics~~
-Learn how to use pyinstaller and make a release or package on github
+~~Learn selenium and requests~~  
+~~Learn github actions basics~~  
+Learn how to use pyinstaller and make a release or package on github  
