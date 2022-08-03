@@ -40,3 +40,6 @@ official piratesbay website. Javascript is run when using selenium
 ## Why
 
 I wanted to learn selenium and how to parse with python requests.
+
+I also wanted to learn how to use github actions. This checks to make
+sure any code pushed has been run through black.
