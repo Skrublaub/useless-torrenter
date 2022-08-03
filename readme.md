@@ -43,3 +43,9 @@ I wanted to learn selenium and how to parse with python requests.
 
 I also wanted to learn how to use github actions. This checks to make
 sure any code pushed has been run through black.
+
+## TODO
+
+~~Learn selenium and requests~~
+~~Learn github actions basics~~
+Learn how to use pyinstaller and make a release or package on github
