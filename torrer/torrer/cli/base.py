@@ -41,7 +41,7 @@ def selenium(
         DEFAULT_URL, "-l", "--localhost", help="url of qbittorent web API"
     ),
     selenium_path: str = Option(
-        DEFAULT_SELENIUM_DOWNLOAD_PATH, "-d", "--download-path", help="Path to download the geckodriver to"
+        DEFAULT_SELENIUM_DOWNLOAD_PATH, "-d", "--download-path", help="Path to download the geckodriver to (if not on path)"  # This line will be formatted
     )
 ) -> None:
     logger.info("Selenium used")
