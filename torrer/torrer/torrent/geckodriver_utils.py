@@ -86,7 +86,9 @@ def check_firefox() -> Path:
             fork_path = Path(temp_path)
             break
     else:
-        raise FirefoxNotFoundError("No firefox or common firefox fork executables found on path")
+        raise FirefoxNotFoundError(
+            "No firefox or common firefox fork executables found on path"
+        )
 
     return fork_path
 

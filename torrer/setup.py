@@ -5,7 +5,7 @@ packages_list: list[str] = [
     "typer",
     "qbittorrent-api",
     "requests-html",
-    "beautifulsoup4"
+    "beautifulsoup4",
 ]
 
 setup(

@@ -40,7 +40,9 @@ def close_webdriver(driver: webdriver.Firefox) -> None:
     return
 
 
-def magnet_link_process(funny_website: str, query: str, selenium_path: Path | str) -> str:
+def magnet_link_process(
+    funny_website: str, query: str, selenium_path: Path | str
+) -> str:
     """
     The process for getting the magnet link. Still learning how to not spaghetti code.
     If any xpaths are changed, this will totally fail.
@@ -61,7 +63,9 @@ def magnet_link_process(funny_website: str, query: str, selenium_path: Path | st
     driver: webdriver.Firefox = start_webdriver(selenium_path)
 
     driver.get(funny_website)
-    search_box = driver.find_element(By.XPATH, r"/html/body/main/section/form/div[1]/input")
+    search_box = driver.find_element(
+        By.XPATH, r"/html/body/main/section/form/div[1]/input"
+    )
     # search_box.click()
     logger.info(f"Sending {query} to search_box")
     search_box.send_keys(query)
@@ -72,7 +76,9 @@ def magnet_link_process(funny_website: str, query: str, selenium_path: Path | st
     top_result.click()
 
     driver.implicitly_wait(5)
-    magnet_link_button = driver.find_element(By.XPATH, r"//a[contains(text(),'Get This Torrent')]")
+    magnet_link_button = driver.find_element(
+        By.XPATH, r"//a[contains(text(),'Get This Torrent')]"
+    )
     magnet_link: str = magnet_link_button.get_property("href")
 
     logger.debug(f"Magnet link: {magnet_link}")

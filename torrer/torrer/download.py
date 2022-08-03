@@ -11,7 +11,9 @@ from torrer.constants import CHUNK_SIZE
 logger = logging.getLogger(__name__)
 
 
-def download_file(url: Path | str, output_path: Path | str = Path.cwd(), chunk_size: int = CHUNK_SIZE) -> Path:
+def download_file(
+    url: Path | str, output_path: Path | str = Path.cwd(), chunk_size: int = CHUNK_SIZE
+) -> Path:
     """
     Downloads a file in chunks. If output_path is a directory, then
     the last part of the url is taken as the name.
@@ -70,13 +72,15 @@ def extract_file(archive_file: Path, end_dir: Path = Path.cwd()) -> Path:
 
     logger.info(f"Extracting {archive_file} to {end_dir}")
 
-    if str(archive_file).endswith('.zip'):
+    if str(archive_file).endswith(".zip"):
         end_file = end_dir / "geckodriver.exe"
-        with zipfile.ZipFile(archive_file, 'r') as extraction_file:  # haven't tested this on Windows
+        with zipfile.ZipFile(
+            archive_file, "r"
+        ) as extraction_file:  # haven't tested this on Windows
             extraction_file.extractall(end_dir)
-    elif str(archive_file).endswith('.tar.gz'):
+    elif str(archive_file).endswith(".tar.gz"):
         end_file = end_dir / "geckodriver"
-        with tarfile.open(archive_file, 'r:gz') as extraction_file:
+        with tarfile.open(archive_file, "r:gz") as extraction_file:
             extraction_file.extractall(end_dir)
 
     logger.info(f"geckodriver extracted to {end_file}")
