@@ -81,7 +81,29 @@ def extract_file(archive_file: Path, end_dir: Path = Path.cwd()) -> Path:
     elif str(archive_file).endswith(".tar.gz"):
         end_file = end_dir / "geckodriver"
         with tarfile.open(archive_file, "r:gz") as extraction_file:
-            extraction_file.extractall(end_dir)
+            
+            import os
+            
+            def is_within_directory(directory, target):
+                
+                abs_directory = os.path.abspath(directory)
+                abs_target = os.path.abspath(target)
+            
+                prefix = os.path.commonprefix([abs_directory, abs_target])
+                
+                return prefix == abs_directory
+            
+            def safe_extract(tar, path=".", members=None, *, numeric_owner=False):
+            
+                for member in tar.getmembers():
+                    member_path = os.path.join(path, member.name)
+                    if not is_within_directory(path, member_path):
+                        raise Exception("Attempted Path Traversal in Tar File")
+            
+                tar.extractall(path, members, numeric_owner=numeric_owner) 
+                
+            
+            safe_extract(extraction_file, end_dir)
 
     logger.info(f"geckodriver extracted to {end_file}")
     return end_file
